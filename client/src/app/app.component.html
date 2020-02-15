@@ -1,0 +1,80 @@
+<div class="navigation col-lg-12">
+  <div class="navbar navbar-default">
+    <div class="container-fluid">
+
+      <div class="navbar-header">
+        <a href="#" class="navbar-brand">{{title}}</a>
+      </div>
+
+      <ul ngbNav #nav="ngbNav" class="nav-tabs" *ngIf="identity">
+        <li ngbNavItem>
+          <span class="glyphicon glyphicon-home"></span>
+          <a ngbNavLink [routerLink]="['/home']" routerLinkActivate="['activate']">Home</a>
+          <ng-template ngbNavContent>Home content</ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>timeline</a>
+          <ng-template ngbNavContent>Timeline content</ng-template>
+        </li>
+
+        <li ngbNavItem>
+          <a ngbNavLink>Gente</a>
+          <ng-template ngbNavContent>Gente content</ng-template>
+        </li>
+      </ul>
+
+      <ul ngbNav #nav="ngbNav" class="nav navbar-nav navbar-right nav-tabs" *ngIf="!identity">
+        <li ngbNavItem>
+          <a ngbNavLink routerLink="['/login']" routerLinkActivate="['activate']">
+            Login
+          </a>
+          <ng-template ngbNavContent>Timeline content</ng-template>
+        </li>
+
+        <li ngbNavItem>
+          <a ngbNavLink [routerLink]="['/registro']" routerLinkActivate="['activate']">
+            Registrarme
+          </a>
+          <ng-template ngbNavContent>Gente content</ng-template>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right" *ngIf="identity">
+        <li class="avatar">
+          <!-- Cargar imagen de usuario-->
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            {{identity.name}} <span class="caret"></span>
+          </a>
+
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#">
+                <span class="glyphicon glyphicon-user"></span>
+                Mi perfil
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/mis-datos']">
+                <span class="glyphicon glyphicon-cog"></span>
+                Mis datos
+              </a>
+            </li>
+            <li>
+              <a href="#" class="pointer" (click)="logout()">
+                <span class="glyphicon glyphicon-log-out"></span>
+                Cerrar sesion
+              </a>
+            </li>
+        
+          </ul>
+        </li>
+      </ul>
+
+
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
